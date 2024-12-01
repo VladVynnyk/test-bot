@@ -24,9 +24,7 @@ logger = logging.getLogger(__name__)
 CHOOSING, TYPING_REPLY, TYPING_CHOICE = range(3)
 
 reply_keyboard = [
-    ["Age", "Favourite colour"],
-    ["Number of siblings", "Something else..."],
-    ["Done"],
+    ["Info", "Price"]
 ]
 markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
 
@@ -40,12 +38,21 @@ def facts_to_str(user_data: dict[str, str]) -> str:
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     """Start the conversation and ask user for input."""
     await update.message.reply_text(
-        "Hi! My name is Doctor Botter. I will hold a more complex conversation with you. "
-        "Why don't you tell me something about yourself?",
+        "Hi! It's a crypto token bot",
         reply_markup=markup,
     )
 
     return CHOOSING
+
+
+async def info_of_token(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
+    "Get info about token: description, contract, links to dex and exchanges"
+    pass
+
+
+async def price_of_token(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
+    "Get current price of token"
+    pass
 
 
 async def regular_choice(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
